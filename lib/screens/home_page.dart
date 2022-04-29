@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_manage_database/models/transaction.dart';
+import 'package:flutter_manage_database/providers/transaction_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'form_screen.dart';
 
@@ -42,20 +45,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 4,
-        itemBuilder: (context, int index) {
-          return const Card(
-            margin: EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 16,
-            ),
-            elevation: 1,
-            child: ListTile(
-              title: Text('Menu'),
-              subtitle: Text('2022/04/25'),
-              trailing: Text('200000 LAK'),
-            ),
+      body: Consumer(
+        builder: (context, TransactionProvider provider, Widget? child) {
+          return ListView.builder(
+            itemCount: provider.transactions.length,
+            itemBuilder: (context, int index) {
+              Transaction data = provider.transactions[index];
+              return Card(
+                margin: EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                elevation: 1,
+                child: ListTile(
+                  title: Text('${data.title}'),
+                  subtitle: Text('${data.date.toString()}'),
+                  trailing: Text('${data.amount.toString()}'),
+                ),
+              );
+            },
           );
         },
       ),
