@@ -3,9 +3,9 @@ import 'package:flutter_manage_database/database/transaction_db.dart';
 import '../models/transactions.dart';
 
 class TransactionProvider with ChangeNotifier {
-  List<Transactions> transactions = [];
+  List<dynamic> transactions = [];
 
-  List<Transactions> getTransaction() {
+  List<dynamic> getTransaction() {
     return transactions;
   }
 
@@ -13,8 +13,8 @@ class TransactionProvider with ChangeNotifier {
     var db = TransactionDB(dbName: "transactions.db");
     await db.InsertData(statement);
 
-    db.loadAllData();
-    transactions.insert(0, statement);
+    transactions = await db.loadAllData();
+
     notifyListeners();
   }
 }

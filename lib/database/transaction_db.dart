@@ -33,11 +33,21 @@ class TransactionDB {
     return keyID;
   }
 
-  Future<bool?> loadAllData() async {
+  Future<List<dynamic>> loadAllData() async {
     var db = await this.openDatabase();
     var store = intMapStoreFactory.store("expense");
     var snapshot = await store.find(db);
-    print(snapshot);
-    return true;
+    // ignore: deprecated_member_use
+    List transactionList = <Transactions>[];
+    for (var record in snapshot) {
+      transactionList.add(
+        Transactions(
+          title: record["title"] as String,
+          amount: record["amount"] as double,
+          date: DateTime.parse(record["date"] as String),
+        ),
+      );
+    }
+    return transactionList;
   }
 }
