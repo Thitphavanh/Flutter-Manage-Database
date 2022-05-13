@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_manage_database/models/transaction.dart';
+import 'package:flutter_manage_database/providers/transaction_provider.dart';
+import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -57,9 +60,15 @@ class FormScreen extends StatelessWidget {
                     var title = titleController.text;
                     var amount = amountController.text;
 
-                    print(title);
-                    print(amount);
+                    Transaction statement = Transaction(
+                      title: title,
+                      amount: double.parse(amount),
+                      date: DateTime.now(),
+                    );
 
+                    var provider = Provider.of<TransactionProvider>(context,
+                        listen: false);
+                    provider.addTransaction(statement);
                     Navigator.pop(context);
                   }
                 },
