@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_manage_database/providers/transaction_provider.dart';
 import 'package:provider/provider.dart';
-import 'home_page.dart';
+import 'home_screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: const HomePage(title: 'Accountant App'),
+        home: const HomeScreen(title: 'Accountant App'),
       ),
     );
   }

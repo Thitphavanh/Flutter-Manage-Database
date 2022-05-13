@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_manage_database/models/transactions.dart';
 import 'package:flutter_manage_database/providers/transaction_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import 'form_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -30,24 +30,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         title: Text(
-          widget.title,
+          "Acountant",
           style: const TextStyle(color: Colors.black),
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return FormScreen();
-                  },
-                ),
-              );
+              SystemNavigator.pop();
             },
-            icon: const Icon(
-              Icons.add,
-              color: Colors.black,
+            child: Text(
+              'Exit',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

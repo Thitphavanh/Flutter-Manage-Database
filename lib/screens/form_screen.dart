@@ -30,7 +30,7 @@ class FormScreen extends StatelessWidget {
             children: [
               TextFormField(
                 decoration: InputDecoration(hintText: 'Name :'),
-                autofocus: true,
+                autofocus: false,
                 controller: titleController,
                 validator: (String? string) {
                   if (string!.isEmpty) {
