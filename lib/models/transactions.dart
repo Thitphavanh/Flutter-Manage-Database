@@ -1,8 +1,8 @@
-class Transaction {
+class Transactions {
   String? title;
   double? amount;
   DateTime? date;
-  Transaction({
+  Transactions({
     this.title,
     this.amount,
     this.date,

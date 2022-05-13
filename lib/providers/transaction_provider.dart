@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../models/transaction.dart';
+import '../models/transactions.dart';
 
 class TransactionProvider with ChangeNotifier {
-  List<Transaction> transactions = [];
+  List<Transactions> transactions = [];
 
-  List<Transaction> getTransaction() {
+  List<Transactions> getTransaction() {
     return transactions;
   }
 
-  addTransaction(Transaction statement) {
+  addTransaction(Transactions statement) {
     transactions.insert(0, statement);
     notifyListeners();
   }
